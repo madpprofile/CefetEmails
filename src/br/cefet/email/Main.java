@@ -136,7 +136,7 @@ public class Main {
 	public static void writeCsv(Map<Long, Person> people, BufferedWriter bw){
 		String name, surname;
 		try{
-			bw.write("id,firstname,lastname\n");
+			bw.write("id,firstname,lastname,e-mails\n");
 		}catch(IOException e){
 			e.printStackTrace();
 		}
