@@ -54,7 +54,7 @@ public class Main {
 				System.exit(exit);
 		}
 		//printAll(people);
-		generateEmails(people, "@cefet-rj.br");
+		generateEmails(people, args[2]);
 		writeCsv(people, bw);
 			try {
 				if(bw != null)
