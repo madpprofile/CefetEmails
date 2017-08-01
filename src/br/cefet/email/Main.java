@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,6 +16,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
+
+	private static SecureRandom random = new SecureRandom();
 
 	public static void main(String[] args) {
 		Map<Long, Person> people = new HashMap<Long, Person>();
@@ -136,7 +140,7 @@ public class Main {
 	public static void writeCsv(Map<Long, Person> people, BufferedWriter bw){
 		String name, surname;
 		try{
-			bw.write("id,firstname,lastname,e-mails\n");
+			bw.write("First Name, Last Name, Email Address, Password\n");
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -170,7 +174,8 @@ public class Main {
 			}
 			//System.out.println(surname);
 			try {
-				bw.write(p.getId() + "," + name + "," + surname + "," + p.getEmail()+"\n");
+				bw.write(name + "," + surname + "," + p.getEmail() +
+						"," + generatePassword() + "\n");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -178,5 +183,9 @@ public class Main {
 		}
 		
 	}// writeCsv
+	
+	public static String generatePassword(){
+		return new BigInteger(130, random).toString(32);
+	}
 	
 }
